@@ -8,4 +8,4 @@ class Hello(Resource):
     def get(self):
         return {"data":"hello "}
 
-Api(api).add_resource(Hello,'/test')
+Api(api).add_resource(Hello,'/api/test')
