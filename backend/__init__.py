@@ -4,7 +4,6 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 
 
-
 def create_app():
     app = Flask(__name__,template_folder="templates",static_folder="static",static_url_path="/backend/static")
     #防止跨域攻击
@@ -20,6 +19,10 @@ def create_app():
     #注册蓝图
     from . import main
     app.register_blueprint(main.main)
+
+    from . import api
+    app.register_blueprint(api.api)
+
     app.config['SECRET_KEY'] = 'j<z\x92\xc7A~\x96K\xfd\xddFu\xdaC<\xacz\xf0\xd3\x1f\xa6\x03'
     app.debug = True
     db.init_app(app)
