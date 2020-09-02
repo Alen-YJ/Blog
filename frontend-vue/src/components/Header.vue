@@ -8,11 +8,17 @@
 </template>
 
 <script lang="ts">
-    import Vue from 'vue'
+    import { Vue, Options } from 'vue-class-component'
 
-    export default Vue.extend({
-        
+    
+
+    @Options({
+        props:{
+            links:Array
+        }
     })
+
+    export default class Header extends Vue {} 
 </script>
 
 <style scoped>
