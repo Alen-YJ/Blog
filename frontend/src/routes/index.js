@@ -7,18 +7,18 @@ export default [
     {
         path:'/',
         component:Home,
-        routes:[
-            {
-                path:'/',
-                exact:true,
-                render:()=>{
-                    <Redirect to={"/recommend"} />
-                }
-            },
-            {
-                path:"/recommend",
-                component:Recommend
-            }
-        ]
+        // routes:[
+        //     {
+        //         path:'/',
+        //         exact:true,
+        //         render:()=>{
+        //             <Redirect to={"/recommend"} />
+        //         }
+        //     },
+        //     {
+        //         path:"/recommend",
+        //         component:Recommend
+        //     }
+        // ]
     }
 ]

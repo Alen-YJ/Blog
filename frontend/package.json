@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "cpx": "^1.5.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-config": "^5.1.1",
@@ -17,8 +18,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prebuild": "rm -rf ../backend/templates/index.html && rm -rf ../backend/static/build",
-    "postbuild": "mv build/index.html ../backend/templates/ && mv build ../backend/static"
+    "prebuild": "rimraf ../backend/templates/index.html && rimraf ../backend/static/build",
+    "postbuild": "cpx build/index.html ../backend/templates/ && cpx build ../backend/static && rimraf build"
   },
   "eslintConfig": {
     "extends": "react-app"
