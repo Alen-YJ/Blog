@@ -1,26 +1,13 @@
 <template>
-    <div>
-        <div id="nav">
-            <router-link to="/">Home</router-link> |
-            <router-link to="/about">About</router-link>
-        </div>
-    </div>
+    <v-app-bar></v-app-bar>
 </template>
 
-<script lang="ts">
-    import { Vue, Options } from 'vue-class-component'
-
-    
-
-    @Options({
-        props:{
-            links:Array
-        }
-    })
-
-    export default class Header extends Vue {} 
+<script>
+    export default {
+        
+    }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 </style>

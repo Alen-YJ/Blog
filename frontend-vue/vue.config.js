@@ -1,5 +1,13 @@
 module.exports = {
+  transpileDependencies: ["vuetify"],
+
+  pluginOptions: {
+    moment: {
+      locales: ["cn"]
+    }
+  },
+
   pwa: {
-    name: 'learn-blog'
+    name: 'Blog'
   }
-}
+};
