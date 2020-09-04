@@ -12,7 +12,10 @@
         },
         data(){
             return{
-
+                loading:false,
+                routes:[
+                    
+                ]
             }
         }
     }

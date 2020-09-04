@@ -1,5 +1,9 @@
 <template>
-    <v-app-bar></v-app-bar>
+    <v-app-bar app>
+        <div>
+            <v-img src='../assets/logo.png' />
+        </div>
+    </v-app-bar>
 </template>
 
 <script>
