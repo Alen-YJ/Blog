@@ -1,6 +1,7 @@
 
 frontend/node_modules/
 frontend-vue/node_modules/
+backend-nest/config/db.ts
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

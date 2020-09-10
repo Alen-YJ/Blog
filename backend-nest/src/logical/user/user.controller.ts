@@ -9,4 +9,9 @@ export class UserController {
     validName(@Body() body: any){
         return this.userService.validName(body.username);
     }
+
+    @Post('valid-user')
+    validUser(@Body() body:any){
+        return this.userService.validUser(body.username);
+    }
 }
