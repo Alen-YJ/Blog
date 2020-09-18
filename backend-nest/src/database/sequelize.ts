@@ -15,7 +15,7 @@ const sequelize = new Sequelize(db.mysql.database, db.mysql.user, db.mysql.passw
 });
 
 sequelize.authenticate().then(()=>{
-    console.log('数据库连接成功')
+    // console.log('数据库连接成功')
 }).catch((err: any)=>{
     console.error(err)
     throw err
