@@ -14,9 +14,8 @@ export class JwtStrategy extends PassportStrategy(Strategy){
             secretOrKey: jwtConstants.secret,
         })
     }
-}
-
-async function validate(payload: any){
-    console.log(`JWT - step 4`)
-    return { id: payload.sub, username:payload.username, realName:payload.realName, role:payload.role}
+    async validate(payload: any){
+        console.log(`JWT - step 4`)
+        return { id: payload.sub, username:payload.username, realName:payload.realName, role:payload.role}
+    }
 }
