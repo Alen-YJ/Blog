@@ -1,7 +1,9 @@
-import { Controller, Post, Body, UseGuards } from '@nestjs/common';
+import { Controller, Post, Body, UseGuards, UsePipes } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport'
 import { UserService } from './user.service'
 import { AuthService } from '../auth/auth.service'
+import { ValidationPipe } from '../../pipe/validation.pipe'
+import { RegisterInfoDTO } from './user.dto'
 
 @Controller('user')
 export class UserController {
@@ -44,8 +46,9 @@ export class UserController {
         }
     }
 
+    @UsePipes(new ValidationPipe())
     @Post('register')
-    async register(@Body() body:any){
+    async register(@Body() body: RegisterInfoDTO){
         return await this.userService.register(body)
     }
 }
