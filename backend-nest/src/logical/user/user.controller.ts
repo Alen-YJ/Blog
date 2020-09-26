@@ -3,26 +3,28 @@ import { AuthGuard } from '@nestjs/passport'
 import { UserService } from './user.service'
 import { AuthService } from '../auth/auth.service'
 import { ValidationPipe } from '../../pipe/validation.pipe'
-import { RegisterInfoDTO } from './user.dto'
+import { RegisterInfoDTO, LoginDTO, ValidNameDTO } from './user.dto'
+import { ApiTags, ApiBearerAuth, ApiBody } from '@nestjs/swagger'
 
+@ApiBearerAuth()
+@ApiTags('user') 
 @Controller('user')
 export class UserController {
     constructor(private readonly userService:UserService, private readonly authService:AuthService){}
 
     @UseGuards(AuthGuard('jwt'))
     @Post('valid-name')
-    validName(@Body() body: any){
+    validName(@Body() body: ValidNameDTO){
         return this.userService.validName(body.username);
     }
 
-    // @Post('valid-user')
-    // validUser(@Body() body:any){
-    //     return this.userService.findUserFromUsername(body.username);
-    // }
-
     //登录
     @Post('login')
-    async login(@Body() loginParams: any){
+    @ApiBody({
+        description:"登录",
+        type: LoginDTO
+    })
+    async login(@Body() loginParams: LoginDTO){
         console.info('jwt - step1')
         const authResult = await this.authService.validateUser(loginParams.username, loginParams.password)
         switch(authResult.code){

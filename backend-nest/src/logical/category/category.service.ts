@@ -39,6 +39,7 @@ export class CategoryService {
         const sql = `
             select * from category where id = ${id}
         `
+        console.log(sql)
         const category = await sequelize.query(sql,{
             type:Sequelize.QueryTypes.SELECT,
             raw: true,
