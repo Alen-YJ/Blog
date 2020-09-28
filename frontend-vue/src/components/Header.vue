@@ -1,15 +1,23 @@
 <template>
-    <v-app-bar app>
-        <div class='logo'>
-            <a href="/">
-                <v-img src='../assets/logo.png' :contain='true' max-height='100%'/>
-            </a>
-        </div>
-        <div class='nav-list'>
-            <router-link to='/' exact>首页</router-link>
-            <router-link to='/article'>文章列表</router-link>
-            <router-link to='/about'>关于</router-link>
-        </div>
+    <v-app-bar app flat dense>
+        <v-container>
+            <v-row>
+                <v-col cols="auto" class="mr-auto">
+                    <div class='logo'>
+                        <a href="/">
+                            <v-img src='../assets/logo.png' :contain='true' max-height='100%'/>
+                        </a>
+                    </div>
+                </v-col>
+                <v-col cols='auto' style='line-height:86px;'>
+                    <div class='nav-list'>
+                        <router-link to='/' exact>首页</router-link>
+                        <router-link to='/article'>文章列表</router-link>
+                        <router-link to='/about'>关于</router-link>
+                    </div>
+                </v-col>
+            </v-row>
+        </v-container>
     </v-app-bar>
 </template>
 

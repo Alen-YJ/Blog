@@ -13,7 +13,7 @@ export class UserService {
     }
     
     async findUserFromUsername(username: string): Promise<any | undefined>{
-        const sql = `select * from admin_user where username = "${username}"`
+        const sql = `select * from user where username = "${username}"`
         try {
             const user = await sequelize.query(sql,{
                 type:Sequelize.QueryTypes.SELECT,   //查询方式
@@ -50,7 +50,7 @@ export class UserService {
         const salt = makeSalt()
         const hashPwd = encryptPassword(password, salt)
 
-        const sql = `insert into admin_user(username, realname, password, password_salt, mobile, status, role, create_at, create_by) 
+        const sql = `insert into user(username, realname, password, password_salt, mobile, status, role, create_at, create_by) 
             values('${username}','${realname}','${hashPwd}','${salt}','${mobile}',1,3,'${now}',0)`
         
         try{
@@ -65,6 +65,10 @@ export class UserService {
                 msg:`service error:${error}`
             }
         }
+    }
 
+    async detail(body: any):Promise<any>{
+        const {id} = body
+        const sql = `select * from `
     }
 }

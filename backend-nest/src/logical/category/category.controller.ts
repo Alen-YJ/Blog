@@ -6,7 +6,7 @@ import { CategoryService } from './category.service'
 import { RbacInterceptor } from '../../interceptor/rbac.interceptor'
 import { roleConstans as role } from '../auth/constants'
 import { ApiBody, ApiTags } from '@nestjs/swagger';
-import { IId, CreateCategoryDTO, UpdateCategoryDTO } from './category.dto'
+import { CreateAntDeleteCategoryDTO, CreateCategoryDTO, UpdateCategoryDTO } from './category.dto'
 
 @ApiTags('category')
 @Controller('category')
@@ -31,7 +31,7 @@ export class CategoryController {
         required: true
     })
     @Get(':id')
-    async queryCategoryById(@Param() params){
+    async queryCategoryById(@Param() params: CreateAntDeleteCategoryDTO){
         return await this.categoryService.queryCategoryById(params)
     }
 
@@ -57,7 +57,7 @@ export class CategoryController {
     @UseGuards(AuthGuard('jwt'))
     // @UseInterceptors(new RbacInterceptor(role.USER))
     @Delete('delete')
-    async deleteCategory(@Body() body: any, @Request() req: any){
+    async deleteCategory(@Body() body: CreateAntDeleteCategoryDTO, @Request() req: any){
         return await this.categoryService.deleteCategory(body, req.user)
     }
 }

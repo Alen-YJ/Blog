@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Body, Injectable } from '@nestjs/common';
 import * as Sequelize from 'sequelize'
 import sequelize from '../../database/sequelize'
 import moment from 'moment'
@@ -12,7 +12,7 @@ export class ArticleService {
      * @returns {Promise<any>}
      * @member CommodityService
      */
-    async queryArticleList(body: any): Promise<any>{
+    async queryArticleList(@Body() body: any): Promise<any>{
         const { page = 1, limit = 10, keyword = ''} = body
         const currentIndex = (page-1) * limit < 0 ? 0 : (page-1)*limit
         const sql = `
@@ -61,11 +61,27 @@ export class ArticleService {
     /**
      * 
      * @param {*} body 
+     * @param { number } id
+     * 
+     */
+    async queryArticleById(@Body() body: any): Promise<any>{
+        const { id } = body
+        const sql = `select * from article where id = ${id}`
+        const result = await sequelize.query(sql,{ logging: false })
+        return {
+            code:200,
+            data:result
+        }
+    }
+
+    /**
+     * 
+     * @param {*} body 
      * @param {number} user_id 
      * @returns {Promise<any>}
      * 
      */
-    async addArticle(body: any, user_id: number): Promise<any>{
+    async addArticle(@Body() body: any, user_id?: number): Promise<any>{
         const { category_id, content, title, create_at, type, visible, top } = body
         const sql = `
             insert into article (category_id,content,title, create_at, type,visible, top, user_id) 
@@ -85,7 +101,7 @@ export class ArticleService {
      * @returns {Promise<any>}
      * 
      */
-    async updateArticle(body: any, user_id?: number ): Promise<any>{
+    async updateArticle(@Body() body: any, user_id?: number ): Promise<any>{
         const { id, category_id, content, title, type, visible, top } = body
         const now = moment().format('yyyy-MM-dd HH:mm:ss')
 
@@ -113,7 +129,7 @@ export class ArticleService {
      * @param body 
      * @param user_id 
      */
-    async deleteArticle(body: any, user_id?:number): Promise<any>{
+    async deleteArticle(@Body() body: any, user_id?:number): Promise<any>{
         const { id } = body
         const sql = `
             delete from article where id = ${id}

@@ -39,3 +39,4 @@ export class RegisterInfoDTO {
     })
     readonly role?: string | number;
 }
+

@@ -7,10 +7,11 @@ import { AuthModule } from './logical/auth/auth.module';
 import { ArticleService } from './logical/article/article.service';
 import { CategoryService } from './logical/category/category.service';
 import { CategoryController } from './logical/category/category.controller';
+import { ArticleController } from './logical/article/article.controller';
 
 @Module({
   imports: [UserModule, AuthModule],
-  controllers: [AppController, UserController, CategoryController],
+  controllers: [AppController, UserController, CategoryController, ArticleController],
   providers: [AppService, ArticleService, CategoryService],
 })
 export class AppModule {}
