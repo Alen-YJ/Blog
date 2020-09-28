@@ -8,10 +8,18 @@
         <div class="info-row nickname">
             YJ
         </div>
-        <div class='info-row tags'></div>
-        <div class="info-row birthday"></div>
-        <div class="info-row email"></div>
-        <div class="info-row sign"></div>
+        <div class='info-row tags'>
+
+        </div>
+        <div class="info-row birthday">
+
+        </div>
+        <div class="info-row email">
+
+        </div>
+        <div class="info-row sign">
+            
+        </div>
     </div>
 </template>
 

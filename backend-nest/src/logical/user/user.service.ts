@@ -69,6 +69,6 @@ export class UserService {
 
     async detail(body: any):Promise<any>{
         const {id} = body
-        const sql = `select * from `
+        const sql = `select * from user `
     }
 }
