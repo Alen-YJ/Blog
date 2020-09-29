@@ -67,8 +67,27 @@ export class UserService {
         }
     }
 
-    async detail(body: any):Promise<any>{
+    //获取用户详情
+    async detail(body: any){
         const {id} = body
-        const sql = `select * from user `
+        const sql = `select user.username,user.realname,email,nickname,avatar,gender,birthday,city,province from user left join user_extend on user.id = user_extend.id where user.id = ${id}`
+        const user = await sequelize.query(sql, {
+            logging: false,
+            type: Sequelize.QueryTypes.SELECT
+        })
+        const tagsSql = `select tag_id,title,level,color,text_color from user_skills left join skill_tags on user_skills.tag_id = skill_tags.id where user_skills.user_id = ${id}`
+        const tags = await sequelize.query(tagsSql, {
+            type:Sequelize.QueryTypes.SELECT, 
+            logging: false,
+            raw:false,
+        })
+        return{
+            code:200,
+            data:Object.assign({},user[0],{
+                tags:tags.map(tag=>{
+                    return tag
+                })
+            })
+        }
     }
 }

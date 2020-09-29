@@ -1,4 +1,4 @@
-import { Controller, Post, Body, UseGuards, UsePipes, Get } from '@nestjs/common';
+import { Controller, Post, Body, UseGuards, UsePipes, Get, Request } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport'
 import { UserService } from './user.service'
 import { AuthService } from '../auth/auth.service'
@@ -54,8 +54,8 @@ export class UserController {
         return await this.userService.register(body)
     }
 
-    @Get('detail/:id')
-    async detail(@Body() body: any): Promise<any>{
-        return await this.userService.detail(body)
+    @Get('detail')
+    async detail(@Body() body: any,@Request() req): Promise<any>{
+        return await this.userService.detail(req.query)
     }
 }

@@ -26,9 +26,6 @@
 
 <style lang="scss" scoped>
     @import "./styles/variables";
-    .app{
-        font-family: tahoma,"microsoft yahei";
-    }
     ::v-deep .v-footer>div{
         text-align:center;
         width:100%;
