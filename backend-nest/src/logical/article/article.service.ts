@@ -38,11 +38,12 @@ export class ArticleService {
         const  countSql = `
             select count(*) as total from article where title like '%${keyword}%'
         `
-        const count: any = await sequelize.query(countSql, {
+        const count = await sequelize.query(countSql, {
             type: Sequelize.QueryTypes.SELECT,
-            raw: true,
             logging: false,
-        })[0]
+        })
+
+        console.log('count',count[0])
 
         return {
             code:200,
@@ -51,7 +52,7 @@ export class ArticleService {
                 list,
                 pagination:{
                     page:page,
-                    total:count,
+                    total:count[0].total,
                     limit:limit
                 }
             }

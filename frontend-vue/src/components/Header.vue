@@ -1,5 +1,5 @@
 <template>
-    <v-app-bar app flat dense>
+    <v-app-bar app flat dense elevate-on-scroll absolute color='white'>
         <v-container>
             <v-row>
                 <v-col cols="auto" class="mr-auto">
