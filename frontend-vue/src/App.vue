@@ -4,7 +4,7 @@
         <v-main>
             <router-view></router-view>
         </v-main>
-        <v-footer padless>
+        <v-footer padless color='white'>
             <div class="text-center">&copy;2020 - learn-way</div>
         </v-footer>
     </v-app>

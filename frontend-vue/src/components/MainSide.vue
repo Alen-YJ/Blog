@@ -24,7 +24,6 @@
             <div class="info-row sign">
                 {{info.sign}}
             </div>
-
         </v-card>
     </div>
 </template>
