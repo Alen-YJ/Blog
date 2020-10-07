@@ -1,17 +1,24 @@
 <template>
     <v-app-bar app flat dense elevate-on-scroll absolute color='white'>
         <v-container>
-            <v-row>
+            <v-row style='align-items:center;'>
                 <v-col cols="auto" class="mr-auto">
-                    <div class='logo'>
-                        <a href="/">
-                            <v-img src='../assets/logo.png' :contain='true' max-height='48px'/>
-                        </a>
-                    </div>
+                    <a href="/">
+                        <v-img src='../assets/logo.png' :contain='true' max-height='48px' width='130px'/>
+                    </a>
                 </v-col>
-                <v-col cols="auto" class="mr-auto" >
-                    <v-text-field label='搜索' hide-details="auto" v-model='keyword'></v-text-field>
-
+                <v-col cols="auto" class="mr-auto" style='display:flex;'>
+                    <v-text-field placeholder='搜索' label=' ' hide-details="auto" v-model='keyword' @keydown.enter="search">
+                        <v-icon
+                            slot="append"
+                            color="gray"
+                            class='search'
+                            @click='search'
+                            >
+                            mdi-magnify
+                        </v-icon>
+                    </v-text-field>
+                    <!-- <v-btn tile color="primary" small @click='createArticle'>写文章</v-btn> -->
                 </v-col>
                 <v-col cols='auto' >
                     <div class='nav-list'>
@@ -30,6 +37,14 @@
         data(){
             return{
                 keyword:undefined
+            }
+        },
+        methods:{
+            search(){
+                
+            },
+            createArticle(){
+
             }
         }
     }
@@ -60,6 +75,12 @@
                 box-shadow:$menu-box-shadow;
                 transition: $menu-transition;
             }
+        }
+    }
+    .search{
+        cursor: pointer;
+        &:hover{
+            filter:opacity(.4);
         }
     }
 </style>

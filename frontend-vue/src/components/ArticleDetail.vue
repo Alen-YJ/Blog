@@ -1,5 +1,6 @@
 <template>
     <div>
+        <div><v-breadcrumbs :items='path' divider='/'></v-breadcrumbs></div>
         <v-skeleton-loader v-bind="attrs" type='image,article' v-if='loading'>
         </v-skeleton-loader>
         <div v-else class='content'>
@@ -30,7 +31,12 @@
                 attrs:{
                     boilerplate: true,
                     elevation: 2,
-                }
+                },
+                path:[
+                    { text:"首页", disabled:false, href:"/" },
+                    { text:"列表", disabled:false, href:"article/list" },
+                    { text:"文章详情", disabled:true, href:"" },
+                ]
             }
         },
         mounted() {
@@ -51,5 +57,6 @@
 <style lang="scss" scoped>
     .content{
         word-break: break-word;
+        text-indent:2em;
     }
 </style>
