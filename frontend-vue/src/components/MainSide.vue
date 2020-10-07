@@ -47,7 +47,7 @@
         methods: {
             async getDetail(){
                 this.loading = true
-                const res = await this.axios.get(`/user/detail`,{params:{
+                const res = await this.axios.get(`/api/user/detail`,{params:{
                     id:1
                 }})
                 this.loading = false

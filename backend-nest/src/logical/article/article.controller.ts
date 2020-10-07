@@ -20,7 +20,7 @@ export class ArticleController {
 
     @Get(':id')
     async queryArticleById(@Body() body: ArticleID, @Request() req){
-        return await this.articleService.queryArticleById(body)
+        return await this.articleService.queryArticleById(req)
     }
 
     @UseGuards(new RbacGuard(role.USER))

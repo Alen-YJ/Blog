@@ -9,13 +9,18 @@
                     <v-card-text class='desc'>{{article.content}}</v-card-text>
                     <!-- <div class="desc">{{article.content}}</div> -->
                     <v-card-actions class='actions'>
-                        <v-btn icon color='default'>
-                            <v-icon small>mdi-thumb-up</v-icon>112
+                        <v-btn depressed text color='#6c757d'>
+                            <v-icon small>mdi-thumb-up</v-icon>
+                            <span >{{article.likes}}</span>
+                        </v-btn>
+                        <v-btn depressed text color='#6c757d'>
+                            <v-icon small>mdi-message</v-icon>
+                            <span >{{article.comments}}</span>
                         </v-btn>
                     </v-card-actions>
                 </div>
                 <div class='img-wrap'>
-                    <v-img src='https://cdn.vuetifyjs.com/images/cards/cooking.png' width='200' height='200' >
+                    <v-img src='https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3760f0ddbe5e441c9b913f1b6520fe8c~tplv-k3u1fbpfcp-zoom-1.image' width='190' height='190' >
                     </v-img>
                 </div>
             </div>
@@ -38,7 +43,7 @@
         },
         methods: {
             showDetail(){
-                window.open(``)
+                window.open(`#/article/${this.article.id}`)
             }
         },
         
@@ -60,12 +65,14 @@
             text-overflow: ellipsis;
         }
         .img-wrap{
-            width:200px;
+            width:190px;
         }
         .actions{
             display: flex;
-            justify-content: space-between;
             padding-left: 20px;
+        }
+        .count{
+            color:gray;
         }
     }
 </style>

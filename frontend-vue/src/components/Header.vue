@@ -5,11 +5,15 @@
                 <v-col cols="auto" class="mr-auto">
                     <div class='logo'>
                         <a href="/">
-                            <v-img src='../assets/logo.png' :contain='true' max-height='100%'/>
+                            <v-img src='../assets/logo.png' :contain='true' max-height='48px'/>
                         </a>
                     </div>
                 </v-col>
-                <v-col cols='auto' style='line-height:86px;'>
+                <v-col cols="auto" class="mr-auto" >
+                    <v-text-field label='搜索' hide-details="auto" v-model='keyword'></v-text-field>
+
+                </v-col>
+                <v-col cols='auto' >
                     <div class='nav-list'>
                         <router-link to='/' exact>首页</router-link>
                         <router-link to='/article'>文章列表</router-link>
@@ -23,7 +27,11 @@
 
 <script>
     export default {
-        
+        data(){
+            return{
+                keyword:undefined
+            }
+        }
     }
 </script>
 
@@ -32,6 +40,7 @@
     .logo{
         padding-left:20px;
         width:130px;
+        height:48px;
     }
     ::v-deep .v-toolbar__content{
         justify-content: space-between;

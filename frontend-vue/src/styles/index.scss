@@ -15,3 +15,6 @@
     font-family: $font-family-monospace;
   }
   
+  button:focus{
+    outline: none;
+  }

@@ -20,9 +20,20 @@ export class ArticleService {
                 id, category_id, user_id, content, title,
                 DATE_FORMAT(create_at, '%Y-%m-%d %H:%i:%s') create_at,
                 DATE_FORMAT(update_at, '%Y-%m-%d %H:%i:%s') update_at,
-                type, visible, top 
+                type, visible, top, likes, comments
             from
-                article
+                article 
+            left join 
+                (select count(article_id) as likes, article_id from likes 
+                group by 
+                article_id having likes > 0) as likes 
+            on 
+                article.id = likes.article_id 
+            left join 
+                (select count(article_id) as comments, article_id from comments 
+                group by 
+                article_id having comments > 0) as comments 
+                on article.id = comments.article_id 
             where 
                 title like '%${keyword}%'
             order by 
@@ -42,8 +53,6 @@ export class ArticleService {
             type: Sequelize.QueryTypes.SELECT,
             logging: false,
         })
-
-        console.log('count',count[0])
 
         return {
             code:200,
@@ -66,12 +75,24 @@ export class ArticleService {
      * 
      */
     async queryArticleById(@Body() body: any): Promise<any>{
-        const { id } = body
-        const sql = `select * from article where id = ${id}`
-        const result = await sequelize.query(sql,{ logging: false })
+        const { id } = body.params
+        console.log('body',body.params)
+        const sql = `select * from article left join (select count(*) as likes,article_id from likes where article_id = ${id}) as likes on article.id = likes.article_id left join (select count(*) as comments, article_id from comments where article_id = ${id}) as comments on comments.article_id = article.id`
+        const result = await sequelize.query(sql,{ 
+            type: Sequelize.QueryTypes.SELECT,
+            logging: false })
+        const comment_sql = `select * from comments where article_id = ${id}`
+        const comments = await sequelize.query(comment_sql,{
+            type: Sequelize.QueryTypes.SELECT,
+            logging: false
+        })
+        const article = Object.assign({},result[0],{
+            comments:comments
+        })
         return {
             code:200,
-            data:result
+            status:"success",
+            data:article
         }
     }
 
