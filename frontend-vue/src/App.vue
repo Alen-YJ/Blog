@@ -31,4 +31,14 @@
         width:100%;
         font-size:$font-size-sm;
     }
+    @media screen and (max-width: 959px) and (min-width: 600px){
+        ::v-deep .col-sm-0{
+            display: none;
+        }
+    }
+    @media screen and (max-width: 599px){
+        ::v-deep div[xs='0']{
+            display: none;
+        }
+    }
 </style>

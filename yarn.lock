@@ -926,6 +926,11 @@ make-dir@^1.0.0:
   dependencies:
     pify "^3.0.0"
 
+marked@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.npm.taobao.org/marked/download/marked-1.2.0.tgz#7221ce2395fa6cf6d722e6f2871a32d3513c85ca"
+  integrity sha1-ciHOI5X6bPbXIubyhxoy01E8hco=
+
 metalsmith@^2.1.0:
   version "2.3.0"
   resolved "https://registry.npm.taobao.org/metalsmith/download/metalsmith-2.3.0.tgz#833afbb5a2a6385e2d9ae3d935e39e33eaea5231"

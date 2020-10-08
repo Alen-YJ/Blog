@@ -104,10 +104,12 @@ export class ArticleService {
      * 
      */
     async addArticle(@Body() body: any, user_id?: number): Promise<any>{
-        const { category_id, content, title, create_at, type, visible, top } = body
+        const { category_id, content, title, type, visible, top } = body
+        const create_at = moment().format("YYYY-MM-DD hh:mm:ss")
+        const category = category_id?category_id:0
         const sql = `
             insert into article (category_id,content,title, create_at, type,visible, top, user_id) 
-            values (${category_id},"${content}","${title}","${create_at}", "${type}",${visible}, ${top}, ${user_id} )
+            values (${category},"${content}","${title}","${create_at}", "${type}",${visible}, ${top}, ${user_id} )
         `
         await sequelize.query(sql, {logging:false})
         return {

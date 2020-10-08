@@ -9,7 +9,7 @@
                 <HTMLParsetor :content='article.content'></HTMLParsetor>
             </template>
             <template v-else>
-                <MarkDownParsetor :content='article.content'></MarkDownParsetor>
+                <MarkdownParsetor :content='article.content'></MarkdownParsetor>
             </template>
         </div>
     </div>
@@ -17,11 +17,11 @@
 
 <script>
     import HTMLParsetor from './HTMLParsetor'
-    import MarkDownParsetor from './MarkDownParsetor'
+    import MarkdownParsetor from './MarkdownParsetor'
     export default {
         components:{
             HTMLParsetor,
-            MarkDownParsetor
+            MarkdownParsetor
         },
         data(){
             return{
@@ -34,7 +34,7 @@
                 },
                 path:[
                     { text:"首页", disabled:false, href:"/" },
-                    { text:"列表", disabled:false, href:"article/list" },
+                    { text:"列表", disabled:false, href:"#articles" },
                     { text:"文章详情", disabled:true, href:"" },
                 ]
             }
@@ -46,7 +46,7 @@
         methods: {
             async getDetail(){
                 this.loading = true
-                let result = await this.axios.get(`api/article/${this.id}`)
+                let result = await this.axios.get(`article/${this.id}`)
                 this.loading = false
                 this.article = result.data.data
             }

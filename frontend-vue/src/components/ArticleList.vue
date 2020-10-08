@@ -32,7 +32,7 @@
         methods: {
             async loadList(){
                 this.loading = true
-                const res = await this.axios.get(`/api/article/list`,{
+                const res = await this.axios.get(`/article/list`,{
                     params:Object.assign({},this.fitler,this.pagination)
                 })
                 this.loading = false
