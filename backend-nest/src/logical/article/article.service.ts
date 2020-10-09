@@ -1,7 +1,7 @@
 import { Body, Injectable } from '@nestjs/common';
 import * as Sequelize from 'sequelize'
 import sequelize from '../../database/sequelize'
-import moment from 'moment'
+import * as moment from 'moment'
 
 @Injectable()
 export class ArticleService {
@@ -77,10 +77,10 @@ export class ArticleService {
     async queryArticleById(@Body() body: any): Promise<any>{
         const { id } = body.params
         console.log('body',body.params)
-        const sql = `select * from article left join (select count(*) as likes,article_id from likes where article_id = ${id}) as likes on article.id = likes.article_id left join (select count(*) as comments, article_id from comments where article_id = ${id}) as comments on comments.article_id = article.id`
+        const sql = `select * from article left join (select count(*) as likes,article_id from likes where article_id = ${id}) as likes on article.id = likes.article_id left join (select count(*) as comments, article_id from comments where article_id = ${id}) as comments on comments.article_id = article.id where article.id = ${id}`
         const result = await sequelize.query(sql,{ 
             type: Sequelize.QueryTypes.SELECT,
-            logging: false })
+            logging: true })
         const comment_sql = `select * from comments where article_id = ${id}`
         const comments = await sequelize.query(comment_sql,{
             type: Sequelize.QueryTypes.SELECT,
@@ -89,27 +89,35 @@ export class ArticleService {
         const article = Object.assign({},result[0],{
             comments:comments
         })
-        return {
-            code:200,
-            status:"success",
-            data:article
+        if(!result||result.length==0){
+            return {
+                code:404,
+                status:"fail",
+            }
+        }else{
+            return {
+                code:200,
+                status:"success",
+                data:article
+            }
         }
     }
 
     /**
      * 
      * @param {*} body 
-     * @param {number} user_id 
+     * @param {number} user
      * @returns {Promise<any>}
      * 
      */
-    async addArticle(@Body() body: any, user_id?: number): Promise<any>{
+    async addArticle(@Body() body: any, user?: any): Promise<any>{
+        console.log('req',user)
         const { category_id, content, title, type, visible, top } = body
         const create_at = moment().format("YYYY-MM-DD hh:mm:ss")
-        const category = category_id?category_id:0
+        const category = category_id?category_id:1
         const sql = `
             insert into article (category_id,content,title, create_at, type,visible, top, user_id) 
-            values (${category},"${content}","${title}","${create_at}", "${type}",${visible}, ${top}, ${user_id} )
+            values (${category},"${content}","${title}","${create_at}", "${type}",${visible?visible:0}, ${top?top:false}, ${user.id} )
         `
         await sequelize.query(sql, {logging:false})
         return {

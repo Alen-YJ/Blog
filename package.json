@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "marked": "^1.2.0",
-    "vue-cli": "^2.9.6"
-  }
-}

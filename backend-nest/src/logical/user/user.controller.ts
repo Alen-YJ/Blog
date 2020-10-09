@@ -1,4 +1,4 @@
-import { Controller, Post, Body, UseGuards, UsePipes, Get, Request } from '@nestjs/common';
+import { Controller, Post, Body, UseGuards, UsePipes, Get, Request, HttpCode } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport'
 import { UserService } from './user.service'
 import { AuthService } from '../auth/auth.service'
@@ -24,6 +24,7 @@ export class UserController {
         description:"登录",
         type: LoginDTO
     })
+    @HttpCode(200)
     async login(@Body() loginParams: LoginDTO){
         console.info('jwt - step1')
         const authResult = await this.authService.validateUser(loginParams.username, loginParams.password)

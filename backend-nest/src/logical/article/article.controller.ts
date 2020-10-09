@@ -41,6 +41,6 @@ export class ArticleController {
     @UseGuards(AuthGuard('jwt'))
     @Put('add')
     async addArticle(@Body() body: CreateArticleDTO, @Request() req){
-        return await this.articleService.addArticle(body)
+        return await this.articleService.addArticle(body,req.user)
     }
 }
