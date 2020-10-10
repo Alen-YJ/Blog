@@ -4,7 +4,23 @@
             <v-row no-gutters>
                 <v-col cols='12' :md='editorConfig.md'>
                     <div class='editor'>
-                        <v-text-field label='标题' v-model='titleValue'></v-text-field>
+                        <div>
+                            <v-text-field label='标题' v-model='titleValue'></v-text-field>
+                            <v-dialog v-model='panorama' width='500'>
+                                <template v-slot:activator="{on, attrs}">
+                                    <v-icon v-bind='attrs' v-on='on' class='img-btn' title='添加封面大图'>mdi-panorama</v-icon>
+                                </template>
+                                <v-card>
+                                    <v-card-title>添加封面大图</v-card-title>
+                                    <v-card-text>
+                                        <v-file-input label="点击添加图片" accept="image/png, image/jpeg, image/bmp, image/webp" filled prepend-icon='mdi-camera' @change='changeCover'></v-file-input>
+                                    </v-card-text>
+                                </v-card>
+                            </v-dialog>
+                        </div>
+                        <div class='controls'>
+                            <v-icon title='插入图片'>mdi-image</v-icon>
+                        </div>
                         <v-textarea label='文章内容' no-resize v-model='content'></v-textarea>
                         <div class='contorls text-right'>
                             <div>
