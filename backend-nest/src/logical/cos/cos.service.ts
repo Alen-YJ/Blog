@@ -3,7 +3,7 @@ import * as COS from 'cos-nodejs-sdk-v5'
 import * as STS from '../../utils/sts'
 const fs = require('fs')
 const path = require('path')
-const PUBLIC_PATH = path.resolve(__dirname,'../../../../.env.json')
+const PUBLIC_PATH = path.resolve(__dirname,'../../../../.env')
 
 const data = JSON.parse(fs.readFileSync(PUBLIC_PATH,'utf-8'))
 const config = {
