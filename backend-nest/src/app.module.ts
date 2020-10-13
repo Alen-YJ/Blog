@@ -10,12 +10,10 @@ import { CategoryController } from './logical/category/category.controller';
 import { ArticleController } from './logical/article/article.controller';
 import { CosService } from './logical/cos/cos.service';
 import { CosController } from './logical/cos/cos.controller';
-import { SettingController } from './logical/setting/setting.controller';
-import { SettingService } from './logical/setting/setting.service';
 
 @Module({
   imports: [UserModule, AuthModule],
-  controllers: [AppController, UserController, CategoryController, ArticleController, CosController, SettingController],
-  providers: [AppService, ArticleService, CategoryService, CosService, SettingService],
+  controllers: [AppController, UserController, CategoryController, ArticleController, CosController],
+  providers: [AppService, ArticleService, CategoryService, CosService],
 })
 export class AppModule {}
