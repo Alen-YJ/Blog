@@ -14,10 +14,20 @@ import { CosController } from './logical/cos/cos.controller';
 @Module({
   imports: [UserModule, AuthModule],
   controllers: [AppController, UserController, CategoryController, ArticleController, 
-    // CosController
+    CosController
   ],
   providers: [AppService, ArticleService, CategoryService, 
-    // CosService
+    CosService
   ],
 })
 export class AppModule {}
+
+// #!/bin/sh
+// DIR=/root/Project/Blog
+// git --work-tree=${DIR} clean -fd
+// git --work-tree=${DIR} checkout --force
+// cd ${DIR}
+// /usr/bin/git pull
+
+
+// https://github.com/Alan-YJ/Blog.git
