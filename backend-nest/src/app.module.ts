@@ -17,7 +17,7 @@ import { CosController } from './logical/cos/cos.controller';
     CosController
   ],
   providers: [AppService, ArticleService, CategoryService, 
-    // CosService
+    CosService
   ],
 })
 export class AppModule {}
