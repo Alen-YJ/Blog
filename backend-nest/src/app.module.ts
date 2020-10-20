@@ -14,10 +14,10 @@ import { CosController } from './logical/cos/cos.controller';
 @Module({
   imports: [UserModule, AuthModule],
   controllers: [AppController, UserController, CategoryController, ArticleController, 
-    CosController
+    // CosController
   ],
   providers: [AppService, ArticleService, CategoryService, 
-    CosService
+    // CosService
   ],
 })
 export class AppModule {}
