@@ -8,12 +8,16 @@ import { ArticleService } from './logical/article/article.service';
 import { CategoryService } from './logical/category/category.service';
 import { CategoryController } from './logical/category/category.controller';
 import { ArticleController } from './logical/article/article.controller';
-import { CosService } from './logical/cos/cos.service';
-import { CosController } from './logical/cos/cos.controller';
+// import { CosService } from './logical/cos/cos.service';
+// import { CosController } from './logical/cos/cos.controller';
 
 @Module({
   imports: [UserModule, AuthModule],
-  controllers: [AppController, UserController, CategoryController, ArticleController, CosController],
-  providers: [AppService, ArticleService, CategoryService, CosService],
+  controllers: [AppController, UserController, CategoryController, ArticleController, 
+    // CosController
+  ],
+  providers: [AppService, ArticleService, CategoryService, 
+    // CosService
+  ],
 })
 export class AppModule {}

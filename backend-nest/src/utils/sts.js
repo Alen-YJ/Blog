@@ -139,4 +139,3 @@ var  cosStsSdk = {
 };
 
 export default cosStsSdk
-module.exports = cosStsSdk;
